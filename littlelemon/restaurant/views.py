@@ -3,7 +3,8 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, De
 from .models import Menu, Booking
 from .serializers import MenuItemSerializer, BookingSerializer
 from rest_framework.viewsets import ModelViewSet
-
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 
 def index(request):
     return render(request, 'index.html', {})
@@ -23,7 +24,6 @@ class SingleMenuItemView(RetrieveUpdateAPIView, DestroyAPIView):
     """
     queryset = Menu.objects.all()
     serializer_class = MenuItemSerializer
-
 
 class BookingViewSet(ModelViewSet):
     """
